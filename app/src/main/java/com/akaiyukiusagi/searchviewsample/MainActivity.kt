@@ -12,7 +12,7 @@ class MainActivity: AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
-    private var datasetArray: ArrayList<String> = arrayListOf() // 表示する内容
+    private var dataset: ArrayList<String> = arrayListOf() // 表示する内容
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,12 +22,13 @@ class MainActivity: AppCompatActivity() {
 
         // 表示する内容を作成
         for (i in 1..1000) {
-            datasetArray.add(i.toString())
+            dataset.add(i.toString())
         }
-        val dataset = datasetArray.toList()
 
-        showRecycler(dataset)
+        // 初回表示
+        showRecycler(dataset.toList())
 
+        // search_viewの文字入力を監視するやつ
         search_view.setOnQueryTextListener(object: androidx.appcompat.widget.SearchView.OnQueryTextListener {
             // 文字編集時
             override fun onQueryTextSubmit(query: String?): Boolean {
